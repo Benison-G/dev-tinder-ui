@@ -4,7 +4,7 @@ import Home from './Home'
 import Login from './Login'
 import Profile from './Profile'
 import { Provider } from 'react-redux'
-import store  from './store/appStore'
+import store  from '../store/appStore'
 
 function App() {
   const [count, setCount] = useState(0)
