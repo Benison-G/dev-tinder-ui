@@ -12,7 +12,7 @@ const Feed = () => {
     const fetchUsers = async () => {
         if (feed && feed.length) return;
         try {
-            const response = await axios.get(BASE_URL + "feed?page=1&limit=2", {
+            const response = await axios.get(BASE_URL + "feed?page=1&limit=50", {
                 withCredentials: true
             });
             dispatch(addFeed(response?.data?.data))
@@ -26,7 +26,7 @@ const Feed = () => {
     }, [])
 
     return feed && feed.length ? (
-        <div className="flex flex-col gap-4 mx-5 my-5">
+        <div className="flex flex-row gap-4 mx-5 my-5">
             {feed.map((item) => (
                 <UserCard key={item._id || item.id} user={item} />
             ))}
