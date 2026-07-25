@@ -9,8 +9,6 @@ const Feed = () => {
     const dispatch = useDispatch();
     const feed = useSelector(store => store.feed);
 
-    console.log(feed)
-
     const fetchUsers = async () => {
         if (feed && feed.length) return;
         try {

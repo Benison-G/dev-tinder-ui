@@ -4,12 +4,13 @@ const UserCard = ({ user }) => {
         <div className="card bg-base-100 w-76 shadow-sm">
             <figure>
                 <img
-                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                    alt="Shoes" />
+                    src={photoURL}
+                    alt="Profile picture" />
             </figure>
             <div className="card-body">
                 <h2 className="card-title">{firstName + " " + lastName}</h2>
                 <h3>{age}</h3>
+                <h3>{gender}</h3>
                 <p>{about}</p>
                 <div className="card-actions justify-center">
                     <button className="btn btn-primary">Ignore</button>
