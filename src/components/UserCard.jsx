@@ -9,8 +9,7 @@ const UserCard = ({ user }) => {
             </figure>
             <div className="card-body">
                 <h2 className="card-title">{firstName + " " + lastName}</h2>
-                <h3>{age}</h3>
-                <h3>{gender}</h3>
+                <h3>{age}, {gender}</h3>
                 <p>{about}</p>
                 <div className="card-actions justify-center">
                     <button className="btn btn-primary">Ignore</button>
