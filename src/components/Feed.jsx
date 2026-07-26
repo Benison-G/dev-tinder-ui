@@ -1,39 +1,40 @@
 import axios from "axios";
-import UserCard from "./UserCard";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addFeed } from "../store/feedSlice";
 import { useEffect } from "react";
+import UserCard from "./UserCard";
 
 const Feed = () => {
+    const feed = useSelector((store) => store.feed);
     const dispatch = useDispatch();
-    const feed = useSelector(store => store.feed);
 
-    const fetchUsers = async () => {
-        if (feed && feed.length) return;
+    const getFeed = async () => {
+        if (feed) return;
         try {
-            const response = await axios.get(BASE_URL + "feed?page=1&limit=50", {
-                withCredentials: true
+            const res = await axios.get(BASE_URL + "feed", {
+                withCredentials: true,
             });
-            dispatch(addFeed(response?.data?.data))
+            dispatch(addFeed(res?.data?.data));
         } catch (err) {
-            console.log(err);
+            //TODO: handle error
         }
-    }
+    };
 
     useEffect(() => {
-        fetchUsers()
-    }, [])
+        getFeed();
+    }, []);
+    if (!feed) return;
 
-    return feed && feed.length ? (
-        <div className="flex flex-row gap-4 mx-5 my-5">
-            {feed.map((item) => (
-                <UserCard key={item._id || item.id} user={item} />
-            ))}
-        </div>
-    ) : (
-        <>No Data</>
+    if (feed.length <= 0)
+        return <h1 className="flex justify-center my-10">No new users founds!</h1>;
+
+    return (
+        feed && (
+            <div className="flex justify-center my-10">
+                <UserCard user={feed[0]} />
+            </div>
+        )
     );
-}
-
+};
 export default Feed;
